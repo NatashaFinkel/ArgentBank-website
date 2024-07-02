@@ -1,19 +1,14 @@
 import React from "react";
-import Image from "./Image";
 import headerImg from "../img/argentBankLogo.png";
+import NavBarLinks from "./NavBarLinks";
 
 function Header() {
     return (
         <nav className="main-nav">
-            <a className="main-nav-logo" href="./index.html">
-                <Image imgClassName="main-nav-logo-image" imgSrc={headerImg} imgAlt="Argent Bank Logo" />
-                <h1 className="sr-only">Argent Bank</h1>
-            </a>
+            <NavBarLinks navClassName="main-nav-logo" navDirection="/" navImgClassName="main-nav-logo-image" navImgSrc={headerImg} navImgAlt="Argent Bank Logo" />
             <div>
-                <a className="main-nav-item" href="./sign-in.html">
-                    <i className="fa fa-user-circle"></i>
-                    Sign In
-                </a>
+                <NavBarLinks navClassName="main-nav-item" 
+                navDirection="/sign-in" navIcon="fa fa-user-circle" navTxtContent="Sign In" />
             </div>
         </nav>
     )
