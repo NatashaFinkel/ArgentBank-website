@@ -23,15 +23,8 @@ function SignInPage() {
                             >
                         </div>
 
-                        {/* Le component Btn.jsx sera ici */}
-
                         <Button />
-
-                        {/*              <!-- PLACEHOLDER DUE TO STATIC SITE -->
-                        <a href="./user.html" class="sign-in-button">Sign In</a>
-                        <!-- SHOULD BE THE BUTTON BELOW -->
-                        <!-- <button class="sign-in-button">Sign In</button> -->
-                        <!--  --> */}
+                        {/* Manque les mots  Sign In sur le button  */}
                     </form>
                 </section>
             </main>
