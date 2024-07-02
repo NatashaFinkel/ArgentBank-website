@@ -21,6 +21,7 @@ body {
 }
 
 .bg-dark {
+  display: flex;
   background-color: #12002b;
 }
 
@@ -166,9 +167,11 @@ body {
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 1rem;
-  border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
+  border: none;
+  text-decoration: underline;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
 .sign-in-content {
@@ -178,10 +181,7 @@ body {
   margin: 0 auto;
   margin-top: 3rem;
   padding: 2rem;
-}
-
-.sign-in-icon {
-  font-size: 5rem;
+  margin-bottom: 2%;
 }
 
 .input-remember {
