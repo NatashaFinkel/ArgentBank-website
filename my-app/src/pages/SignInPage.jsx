@@ -3,7 +3,7 @@ import Button from "../components/Button.jsx";
 
 function SignInPage() {
     return (
-        <div>
+
             <main className="main bg-dark">
                 <section className="sign-in-content">
                     <i className="fa fa-user-circle sign-in-icon"></i>
@@ -22,13 +22,10 @@ function SignInPage() {
                             >Remember me</label
                             >
                         </div>
-
-                        <Button />
-                        {/* Manque les mots  Sign In sur le button  */}
+                        <Button btnTxt=" Sign In" />
                     </form>
                 </section>
             </main>
-        </div>
     )
 }
 
