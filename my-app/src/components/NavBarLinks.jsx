@@ -2,12 +2,12 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Image from "./Image";
 
-function NavBarLinks({ navClassName, navDirection, navImgClassName, navImgSrc,navImgAlt, navIcon, navTxtContent }) {
+function NavBarLinks({ navClassName, navDirection, navPId, navImgClassName, navImgSrc,navImgAlt, navIcon }) {
     return (
         <NavLink className={navClassName} to={navDirection}>
             <Image imgClassName={navImgClassName} imgSrc={navImgSrc} imgAlt={navImgAlt} /> 
             <i className={navIcon}></i>
-            <p>{navTxtContent}</p>
+            <p id={navPId}></p>
         </NavLink>
     )
 }
