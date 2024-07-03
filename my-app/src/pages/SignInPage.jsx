@@ -22,7 +22,7 @@ function SignInPage() {
                             >Remember me</label
                             >
                         </div>
-                        <Button btnTxt=" Sign In" />
+                        <Button btnClassName="sign-in-button" btnTxt=" Sign In" />
                     </form>
                 </section>
             </main>
