@@ -1,31 +1,24 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
 import headerImg from "../img/argentBankLogo.png";
 import NavBarLinks from "./NavBarLinks";
 
 function Header() {
     const location = useLocation();
+    const locationPathName = location.pathname;
 
-    useEffect(() => {
-        const userNameAndIcon = document.getElementById("userNameAndIcon");
-
-        if (location.pathname === "/user") {
-            userNameAndIcon.textContent = "Tony";
-        } else {
-            userNameAndIcon.textContent = "Sign in";
-        }
-
-    }, [location.pathname]);
-
+    console.log(locationPathName);
     return (
         <nav className="main-nav">
             <NavBarLinks navClassName="main-nav-logo" navDirection="/" navImgClassName="main-nav-logo-image" navImgSrc={headerImg} navImgAlt="Argent Bank Logo" />
-            <div>
+            <div className="user-name-div">
                 <NavBarLinks navClassName="main-nav-item"
-                    navDirection="/sign-in" navIcon="fa fa-user-circle nav-user-icon" navPId="userNameAndIcon" />
+                    navDirection="/sign-in" navId="anonymous-user" navIcon="fa fa-user-circle nav-user-icon" navPId="userNameAndIcon" Navtxt="Sign in" />
+
+                <NavBarLinks navClassName="main-nav-item signOut-btn"
+                    navDirection="/" navIcon="fa fa-sign-out signOut-icon" id="signOut-btn" Navtxt="Sign Out" />
             </div>
-        </nav>
+        </nav >
     )
 }
 
