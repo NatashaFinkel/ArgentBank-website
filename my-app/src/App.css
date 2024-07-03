@@ -56,6 +56,27 @@ body {
   height: 55px;
 }
 
+.user-name-div {
+  display: flex;
+  align-items: center;
+}
+
+.signOut-btn {
+  display: flex;
+  background-color: white;
+  color: #2c3e50;
+  border: none;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: 20px;
+}
+
+.signOut-icon {
+  font-weight: bold;
+  cursor: pointer;
+  gap: 5px;
+  display: flex;
+}
+
 .main-nav a.router-link-exact-active {
   color: #42b983;
 }
