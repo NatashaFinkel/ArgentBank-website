@@ -8,7 +8,7 @@ function Header() {
             <NavBarLinks navClassName="main-nav-logo" navDirection="/" navImgClassName="main-nav-logo-image" navImgSrc={headerImg} navImgAlt="Argent Bank Logo" />
             <div>
                 <NavBarLinks navClassName="main-nav-item" 
-                navDirection="/sign-in" navIcon="fa fa-user-circle" navTxtContent="Sign In" />
+                navDirection="/sign-in" navIcon="fa fa-user-circle nav-user-icon" navTxtContent="Sign In" />
             </div>
         </nav>
     )
