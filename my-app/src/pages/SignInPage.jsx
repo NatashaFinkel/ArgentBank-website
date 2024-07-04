@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../components/Button.jsx";
+import NavBarLinks from "../components/NavBarLinks.jsx";
 
 function SignInPage() {
     return (
@@ -22,7 +22,7 @@ function SignInPage() {
                             >Remember me</label
                             >
                         </div>
-                        <Button btnClassName="sign-in-button" btnTxt=" Sign In" />
+                        <NavBarLinks  navClassName ="sign-in-button"  navDirection="/user"  Navtxt="Sign In"  />
                     </form>
                 </section>
             </main>
