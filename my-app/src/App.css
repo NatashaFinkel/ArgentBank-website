@@ -197,8 +197,7 @@ body {
 }
 
 .sign-in-button {
-  display: block;
-  width: 107%;
+  width: 100%;
   padding: 8px;
   font-size: 1.1rem;
   font-weight: bold;
@@ -208,6 +207,10 @@ body {
   border: none;
   text-decoration: underline;
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
 }
 
 .sign-in-content {
