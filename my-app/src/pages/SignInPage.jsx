@@ -1,19 +1,25 @@
 import { React, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAsync } from "../reducers/authentificationSlice.js";
+import { useNavigate } from 'react-router-dom';
 
 function SignInPage() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const dispatch = useDispatch();
     const user = useSelector((state) => state.user) || {};
     const { isAuthenticated } = user;
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        dispatch(loginAsync({ email, password }));
+        const resultAction = await dispatch(loginAsync({ email, password }));
+        if (resultAction.payload && resultAction.payload.isAuthenticated) {
+            navigate('/user');
+        } else {
+            console.log('Login failed:', resultAction.payload);
+        }
     };
-
     return (
         <main className="main bg-dark">
             <section className="sign-in-content">

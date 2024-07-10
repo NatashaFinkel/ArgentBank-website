@@ -13,10 +13,11 @@ export const loginAsync = createAsyncThunk(
             });
             const data = await response.json();
             if (response.ok) {
-                console.log("fraise");
-                return data;
+                let dataContent = data.body;
+                let token = dataContent.token;
+                localStorage.setItem(email, token);
+                return { ...data, isAuthenticated: true };
             } else {
-                console.log("failed !");
                 return thunkAPI.rejectWithValue(data);
             }
         } catch (error) {
@@ -50,8 +51,8 @@ const authentificationSlice = createSlice({
                 state.error = null;
             })
             .addCase(loginAsync.rejected, (state, action) => {
-                state.isAuthenticated = false;
                 state.error = action.payload.message || 'Login failed';
+                state.error = "Login failed";
             });
     },
 });
