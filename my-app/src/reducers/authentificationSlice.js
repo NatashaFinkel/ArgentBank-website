@@ -13,10 +13,11 @@ export const loginAsync = createAsyncThunk(
             });
             const data = await response.json();
             if (response.ok) {
-                let dataContent = data.body;
-                let token = dataContent.token;
+                const dataContent = data.body;
+                const token = dataContent.token;
                 localStorage.setItem(email, token);
-                return { ...data, isAuthenticated: true };
+                return {...data, isAuthenticated: true
+                };
             } else {
                 return thunkAPI.rejectWithValue(data);
             }
@@ -29,8 +30,10 @@ export const loginAsync = createAsyncThunk(
 const authentificationSlice = createSlice({
     name: 'user',
     initialState: {
-        name: '',
+        name: null,
+        token: null,
         isAuthenticated: false,
+        authData: null,
         error: null,
     },
     reducers: {
@@ -47,7 +50,9 @@ const authentificationSlice = createSlice({
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
                 state.name = action.payload.name;
+                state.token = action.payload.token;
                 state.isAuthenticated = true;
+                state.authData = action.payload.authData;
                 state.error = null;
             })
             .addCase(loginAsync.rejected, (state, action) => {
