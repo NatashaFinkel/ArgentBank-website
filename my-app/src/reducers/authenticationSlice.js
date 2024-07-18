@@ -27,7 +27,7 @@ export const loginAsync = createAsyncThunk(
     }
 );
 
-const authentificationSlice = createSlice({
+const authenticationSlice = createSlice({
     name: 'user',
     initialState: {
         name: null,
@@ -62,5 +62,5 @@ const authentificationSlice = createSlice({
     },
 });
 
-export const { logout } = authentificationSlice.actions;
-export default authentificationSlice.reducer;
+export const { logout } = authenticationSlice.actions;
+export default authenticationSlice.reducer;
