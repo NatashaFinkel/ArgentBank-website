@@ -8,7 +8,6 @@ export const loginAsync = createAsyncThunk(
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                   
                 },
                 body: JSON.stringify({ email, password }),
             });
@@ -16,7 +15,6 @@ export const loginAsync = createAsyncThunk(
             if (response.ok) {
                 const dataContent = data.body;
                 const token = dataContent.token;
-                console.log(token);
                 localStorage.setItem(email, token);
                 return {...data, isAuthenticated: true, ...token
                 };

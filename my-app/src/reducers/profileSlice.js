@@ -16,7 +16,6 @@ const getProfile = createAsyncThunk(
             const data = await response.json();
             if (response.ok) {
                 const dataContent = data.body;
-                console.log(dataContent);
                 localStorage.setItem('userinfo', JSON.stringify({ firstName, lastName, email, password, token }));
                 return { ...dataContent };
             } else {
@@ -39,7 +38,7 @@ const userProfile = createSlice({
             const { profile } = action.payload;
             return [...state, profile.firstName, profile.lastName]
         },
-        getProfileRejected: (state, action) => {
+        getProfileRejected: (state) => {
             return state;
         },
     },
