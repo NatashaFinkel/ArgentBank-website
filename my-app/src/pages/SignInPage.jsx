@@ -1,12 +1,14 @@
-import { React, useState } from "react";
+import { React } from "react";
+import { useState } from "react";
 import Header from '../components/Header';
 import { useDispatch, useSelector } from "react-redux";
+// import { useNavigate } from 'react-router-dom';
 import { loginAsync } from "../reducers/authenticationSlice";
-import { useNavigate } from 'react-router-dom';
+import { getProfile } from '../reducers/profileSlice';
 
 const SignInPage = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const user = useSelector((state) => state.user) || {};
@@ -16,7 +18,11 @@ const SignInPage = () => {
         e.preventDefault();
         const resultAction = await dispatch(loginAsync({ email, password }));
         if (resultAction.payload && resultAction.payload.isAuthenticated) {
-           navigate('/profile');
+            const token = resultAction.payload.body.token;
+            const profileAction = await dispatch(getProfile({ token }));
+            if (profileAction.payload) {
+                console.log('Profile fetched successfully:', profileAction.payload);
+            };
         } else {
             console.log('Login failed:', resultAction.payload);
         }
@@ -43,7 +49,7 @@ const SignInPage = () => {
                             <label htmlFor="remember-me">Remember me</label>
                         </div>
                         <button className="sign-in-button" onClick={handleLogin} type="submit">Sign in</button>
-                        { isAuthenticated }
+                        {isAuthenticated}
                     </form>
                 </section>
             </main>
