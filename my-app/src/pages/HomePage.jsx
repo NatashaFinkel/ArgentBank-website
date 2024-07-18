@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "../components/Header";
 import FeatureItem from "../components/FeatureItem";
 import iconChatImg from "../img/icon-chat.png";
 import iconMoneyImg from "../img/icon-money.png";
@@ -7,6 +8,7 @@ import iconSecurityImg from "../img/icon-security.png";
 function HomePage() {
     return (
         <div>
+            <Header />
             <div className="hero">
                 <section className="hero-content">
                     <h2 className="sr-only">Promoted Content</h2>
