@@ -16,7 +16,8 @@ export const loginAsync = createAsyncThunk(
                 const dataContent = data.body;
                 const token = dataContent.token;
                 localStorage.setItem(email, token);
-                return {...data, isAuthenticated: true, ...token
+                return {
+                    ...data, isAuthenticated: true, ...token
                 };
             } else {
                 return thunkAPI.rejectWithValue(data);
