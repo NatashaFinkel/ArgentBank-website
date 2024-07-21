@@ -16,7 +16,7 @@ const getProfile = createAsyncThunk(
             const data = await response.json();
             if (response.ok) {
                 const dataContent = data.body;
-                localStorage.setItem('userinfo', JSON.stringify({ firstName, lastName, email, password, token }));
+                localStorage.setItem('logInToken', JSON.stringify({ firstName, lastName, email, password, token }));
                 return { ...dataContent };
             } else {
                 return thunkAPI.rejectWithValue(data);
