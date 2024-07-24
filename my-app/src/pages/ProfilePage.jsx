@@ -1,12 +1,24 @@
-import React from "react";
+import {React, useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProfile } from "../Redux/reducers/profileSlice";
 import Button from "../components/Button";
 import Account from "../components/Account";
 
 function ProfilePage() {
+    const dispatch = useDispatch();
+    const name = useSelector((state) => state.profile.name);
+    const token = useSelector((state) => state.authentication.token);
+
+    useEffect(() => {
+        if (token) {
+            dispatch(fetchProfile(token));
+        }
+    }, [dispatch, token]);
+
     return (
         <main className="main bg-dark">
             <div className="header">
-                <h1>Welcome back<br />Tony Jarvis!</h1>
+                <h1>Welcome back <br />{name.firstName} {name.lastName}!</h1>
                 <Button btnClassName="edit-button" btnTxt="Edit Name" />
             </div>
             <h2 className="sr-only">Accounts</h2>
