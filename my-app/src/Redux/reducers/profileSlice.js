@@ -41,9 +41,7 @@ const profileSlice = createSlice({
 
             .addCase(fetchProfile.fulfilled, (state, action) => {
                 state.status = "success";
-                console.log(state.name);
                 state.name = action.payload;
-                console.log(state.name);
             })
             .addCase(fetchProfile.rejected, (state, action) => {
                 state.status = "fail";
