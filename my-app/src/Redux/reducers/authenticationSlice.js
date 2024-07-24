@@ -15,7 +15,7 @@ export const loginAsync = createAsyncThunk(
             if (!response.ok) {
                 return rejectWithValue(data.message);
             }
-            return { token: data.body.token };  
+            return { token: data.body.token };
         } catch (error) {
             return rejectWithValue(error.message);
         }
@@ -30,7 +30,11 @@ const authenticationSlice = createSlice({
         error: null,
     },
     reducers: {
-
+        logout: (state) => {
+            state.token = null;
+            localStorage.removeItem("Token");
+            sessionStorage.removeItem("Token");
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -50,4 +54,5 @@ const authenticationSlice = createSlice({
     },
 });
 
+export const { logout } = authenticationSlice.actions;
 export default authenticationSlice.reducer;
