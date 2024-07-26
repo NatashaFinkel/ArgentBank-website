@@ -6,13 +6,14 @@ import { loginAsync } from "../Redux/reducers/authenticationSlice.js";
 const SignInPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [rememberMe, setRememberMe] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { loading, error } = useSelector((state) => state.authentication);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(loginAsync({ email, password }))
+        dispatch(loginAsync({ email, password, rememberMe }))
             .unwrap()
             .then(() => {
                 navigate("/profile");
@@ -40,16 +41,16 @@ const SignInPage = () => {
                             required />
                     </div>
                     <div className="input-remember">
-                        <input type="checkbox" id="remember-me" /><label htmlFor="remember-me"
-                        >Remember me</label
-                        >
+                        <input type="checkbox" id="remember-me" checked={rememberMe}
+                            onChange={(e) => setRememberMe(e.target.checked)} />
+                        <label htmlFor="remember-me">Remember me</label>
                     </div>
                     {error && <p>{error}</p>}
                     <button type="submit" className="sign-in-button" disabled={loading}>Sign in</button>
                 </form>
             </section>
         </main>
-    )
-}
+    );
+};
 
 export default SignInPage;
