@@ -14,24 +14,35 @@ function Header() {
     };
 
     return (
-        <nav className="main-nav">
-            <NavBarLinks navClassName="main-nav-logo" navDirection="/" navImgClassName="main-nav-logo-image" navImgSrc={headerImg} navImgAlt="Argent Bank Logo" />
-            <div className="user-name-div">
-                {token ? (
-                    <>
-                        <NavBarLinks navClassName="main-nav-item"
-                            navDirection="/sign-in" navId="anonymous-user" navIcon="fa fa-user-circle nav-user-icon" navPId="userNameAndIcon" Navtxt={firstName} />
+        <div>
+            {token ? (
+                <>
+                    <nav className="main-nav">
+                        <NavBarLinks navClassName="main-nav-logo" navDirection="/" navImgClassName="main-nav-logo-image" navImgSrc={headerImg} navImgAlt="Argent Bank Logo" />
+                        <div className="user-name-div">
 
-                        <NavBarLinks navClassName="main-nav-item signOut-btn"
-                            navDirection="/sign-in" navIcon="fa fa-sign-out signOut-icon" navId="signOut-btn" Navtxt="Sign Out" navOnClick={handleLogout} />
-                    </>
-                ) : (
-                    <NavBarLinks navClassName="main-nav-item"
-                        navDirection="/sign-in" navId="anonymous-user" navIcon="fa fa-user-circle nav-user-icon" navPId="userNameAndIcon" Navtxt="sign in" />
-                )}
-            </div>
-        </nav >
+                            <NavBarLinks navClassName="main-nav-item"
+                                navId="anonymous-user" navIcon="fa fa-user-circle nav-user-icon" navPId="userNameAndIcon" Navtxt={firstName} />
+
+                            <NavBarLinks navClassName="main-nav-item signOut-btn"
+                                navDirection="/sign-in" navIcon="fa fa-sign-out signOut-icon" navId="signOut-btn" Navtxt="Sign Out" navOnClick={handleLogout} />
+                        </div>
+                    </nav>
+                </>
+            ) : (
+
+                <nav className="main-nav">
+                    <NavBarLinks navClassName="main-nav-logo" navDirection="/" navImgClassName="main-nav-logo-image" navImgSrc={headerImg} navImgAlt="Argent Bank Logo" />
+
+                    <div className="user-name-div">
+                        <NavBarLinks navClassName="main-nav-item"
+                            navDirection="/sign-in" navId="anonymous-user" navIcon="fa fa-user-circle nav-user-icon" navPId="userNameAndIcon" Navtxt="sign in" />
+                    </div>
+                </nav>
+            )}
+        </div>
     );
-};
+
+}
 
 export default Header;
