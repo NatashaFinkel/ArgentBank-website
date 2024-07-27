@@ -1,21 +1,10 @@
-import { React, useEffect } from "react";
-//import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProfile } from "../Redux/reducers/profileSlice";
+import React from "react";
+import { useSelector } from "react-redux";
 import Button from "../components/Button";
 import Account from "../components/Account";
 
 function ProfilePage() {
-    const dispatch = useDispatch();
     const name = useSelector((state) => state.profile.name);
-    const token = useSelector((state) => state.authentication.token);
-
-    useEffect(() => {
-        if (token) {
-            dispatch(fetchProfile(token));
-        }
-    }, [dispatch, token]);
-
 
     return (
         <main className="main bg-dark">
