@@ -70,13 +70,6 @@ const profileSlice = createSlice({
             .addCase(fetchProfile.fulfilled, (state, action) => {
                 state.status = "success";
                 state.name = action.payload;
-              //  const userFirstName = action.payload.firstName;
-
-/*                 if (action.payload.rememberMe) {
-                    localStorage.setItem("Name", userFirstName);
-                } else {
-                    sessionStorage.setItem("Name", userFirstName);
-                } */
             })
 
             .addCase(fetchProfile.rejected, (state, action) => {

@@ -34,10 +34,7 @@ const authenticationSlice = createSlice({
         logout: (state) => {
             state.token = null;
             localStorage.removeItem("Token");
-            localStorage.removeItem("Name");
-
             sessionStorage.removeItem("Token");
-            sessionStorage.removeItem("Name");
         }
     },
     extraReducers: (builder) => {
@@ -55,14 +52,6 @@ const authenticationSlice = createSlice({
                 } else {
                     sessionStorage.setItem("Token", action.payload.token);
                 }
-
-                              //  const userFirstName = action.payload.firstName;
-
-/*                 if (action.payload.rememberMe) {
-                    localStorage.setItem("Name", userFirstName);
-                } else {
-                    sessionStorage.setItem("Name", userFirstName);
-                } */
             })
             .addCase(loginAsync.rejected, (state, action) => {
                 state.loading = false;
