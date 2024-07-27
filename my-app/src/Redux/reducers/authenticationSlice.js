@@ -2,14 +2,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const loginAsync = createAsyncThunk(
     "authentication/login",
-    async ({ email, password, rememberMe }, { rejectWithValue }) => {
+    async ({ token, email, password, rememberMe }, { rejectWithValue }) => {
         try {
             const response = await fetch("http://localhost:3001/api/v1/user/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email, password, rememberMe }),
+                body: JSON.stringify({ token, email, password, rememberMe }),
             });
             const data = await response.json();
             if (!response.ok) {
@@ -34,7 +34,10 @@ const authenticationSlice = createSlice({
         logout: (state) => {
             state.token = null;
             localStorage.removeItem("Token");
+            localStorage.removeItem("Name");
+
             sessionStorage.removeItem("Token");
+            sessionStorage.removeItem("Name");
         }
     },
     extraReducers: (builder) => {
@@ -52,6 +55,14 @@ const authenticationSlice = createSlice({
                 } else {
                     sessionStorage.setItem("Token", action.payload.token);
                 }
+
+                              //  const userFirstName = action.payload.firstName;
+
+/*                 if (action.payload.rememberMe) {
+                    localStorage.setItem("Name", userFirstName);
+                } else {
+                    sessionStorage.setItem("Name", userFirstName);
+                } */
             })
             .addCase(loginAsync.rejected, (state, action) => {
                 state.loading = false;

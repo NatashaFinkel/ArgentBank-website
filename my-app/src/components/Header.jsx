@@ -1,5 +1,6 @@
-import React from "react";
+import {React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchProfile } from "../Redux/reducers/profileSlice.js";
 import headerImg from "../img/argentBankLogo.png";
 import NavBarLinks from "./NavBarLinks";
 import { logout } from "../Redux/reducers/authenticationSlice.js";
@@ -8,6 +9,12 @@ function Header() {
     const dispatch = useDispatch();
     const token = useSelector((state) => state.authentication.token);
     const firstName = useSelector((state) => state.profile.name.firstName);
+
+    useEffect(() => {
+        if (token) {
+            dispatch(fetchProfile(token));
+        }
+    }, [dispatch, token]);
 
     const handleLogout = () => {
         dispatch(logout());
