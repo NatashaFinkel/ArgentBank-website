@@ -21,32 +21,49 @@ const EditName = () => {
 
     return (
         <div className="edit-name-form">
-            <input
-                type="text"
-                name="userName"
-                value={newUserName}
-                onChange={(e) => setNewUserName(e.target.value)}
-            />
+            <p className="edit-name-form-title">Edit user info</p>
+            <div>
+                <label htmlFor="user-name-input">User name:</label>
+                <input
+                    type="text"
+                    className="edit-name-imput"
+                    id="user-name-input"
+                    name="userName"
+                    value={newUserName}
+                    onChange={(e) => setNewUserName(e.target.value)}
+                />
+            </div>
 
-            <input
-                type="text"
-                name="firstName"
-                value={firstName}
-                disabled
-            />
-            <input
-                type="text"
-                name="lastName"
-                value={lastName}
-                disabled
-            />
+            <div>
+                <label htmlFor="first-name-input">First name:</label>
+                <input
+                    type="text"
+                    className="edit-name-imput"
+                    id="first-name-input"
+                    name="firstName"
+                    value={firstName}
+                    disabled
+                />
+            </div>
+
+            <div>
+                <label htmlFor="last-name-input">Last name:</label>
+                <input
+                    type="text"
+                    className="edit-name-imput"
+                    id="last-name-input"
+                    name="lastName"
+                    value={lastName}
+                    disabled
+                />
+            </div>
 
             <div className="button-group">
-                <button className="save-button" onClick={handleNameSave}>
+                <button className="save-or-cancel-button" onClick={handleNameSave}>
                     Save
                 </button>
 
-                <button className="cancel-button" onClick={handleCancelNameClick}>
+                <button className="save-or-cancel-button" onClick={handleCancelNameClick}>
                     Cancel
                 </button>
             </div>
