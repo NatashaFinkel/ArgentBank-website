@@ -45,7 +45,7 @@ const RestrictedAccess = ({ children }) => {
         return <div>Loading...</div>;
     }
 
-    return isValid ? children : <Navigate to="/sign-in" />;
+    return isValid ? children : <Navigate to="/login" />;
 };
 
 RestrictedAccess.propTypes = {

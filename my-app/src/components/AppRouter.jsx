@@ -12,7 +12,7 @@ const AppRouter = () => {
             <Header />
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/sign-in" element={<SignInPage />} />
+                <Route path="/login" element={<SignInPage />} />
                 <Route path="/profile" element={<RestrictedAccess>
                     <ProfilePage />
                 </RestrictedAccess>

@@ -43,7 +43,7 @@ function Header() {
 
                     <div className="user-name-div">
                         <NavBarLinks navClassName="main-nav-item"
-                            navDirection="/sign-in" navId="anonymous-user" navIcon="fa fa-user-circle nav-user-icon" navPId="userNameAndIcon" Navtxt="sign in" />
+                            navDirection="/login" navId="anonymous-user" navIcon="fa fa-user-circle nav-user-icon" navPId="userNameAndIcon" Navtxt="sign in" />
                     </div>
                 </nav>
             )}
