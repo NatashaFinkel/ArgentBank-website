@@ -26,11 +26,14 @@ function ProfilePage() {
     return (
         <main className="main bg-dark">
             <div className="header">
-                <h1>Welcome back <br />{name.firstName} {name.lastName}!</h1>
+
                 {isBeingEdited ? (
                     <EditName />
                 ) : (
-                    <Button btnClassName="edit-button" btnTxt="Edit Name" btnOnClick={handleEditBtn} />
+                    <div>
+                        <h1>Welcome back <br />{name.firstName} {name.lastName}!</h1>
+                        <Button btnClassName="edit-button" btnTxt="Edit Name" btnOnClick={handleEditBtn} />
+                    </div>
                 )}
             </div>
 
