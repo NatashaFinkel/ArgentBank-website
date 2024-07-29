@@ -32,7 +32,7 @@ function Header() {
                                 navId="anonymous-user" navIcon="fa fa-user-circle nav-user-icon" navPId="userNameAndIcon" Navtxt={firstName} />
 
                             <NavBarLinks navClassName="main-nav-item signOut-btn"
-                                navDirection="/sign-in" navIcon="fa fa-sign-out signOut-icon" navId="signOut-btn" Navtxt="Sign Out" navOnClick={handleLogout} />
+                                navDirection="/" navIcon="fa fa-sign-out signOut-icon" navId="signOut-btn" Navtxt="Sign Out" navOnClick={handleLogout} />
                         </div>
                     </nav>
                 </>
