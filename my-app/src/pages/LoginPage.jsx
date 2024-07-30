@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginAsync } from "../Redux/reducers/authenticationSlice.js";
 
-const SignInPage = () => {
+const LoginPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
@@ -53,4 +53,4 @@ const SignInPage = () => {
     );
 };
 
-export default SignInPage;
+export default LoginPage;
