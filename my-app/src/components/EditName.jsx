@@ -29,6 +29,7 @@ const EditName = () => {
                     className="edit-name-imput"
                     id="user-name-input"
                     name="userName"
+                    autoComplete="off"
                     value={newUserName}
                     onChange={(e) => setNewUserName(e.target.value)}
                 />
