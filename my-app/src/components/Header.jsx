@@ -29,7 +29,7 @@ function Header() {
                         <div className="user-name-div">
 
                             <NavBarLinks navClassName="main-nav-item"
-                                navId="anonymous-user" navIcon="fa fa-user-circle nav-user-icon" navPId="userNameAndIcon" Navtxt={firstName} />
+                                navId="anonymous-user" navIcon="fa fa-user-circle nav-user-icon" navPId="userNameAndIcon" Navtxt={firstName} navDirection="/profile" />
 
                             <NavBarLinks navClassName="main-nav-item signOut-btn"
                                 navDirection="/" navIcon="fa fa-sign-out signOut-icon" navId="signOut-btn" Navtxt="Sign Out" navOnClick={handleLogout} />
