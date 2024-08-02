@@ -31,10 +31,13 @@ function ProfilePage() {
     const handleNameSave = () => {
         dispatch(saveNewUserName({ userName: newUserName, userId: userId, token: token }))
             .then(() => {
+                dispatch(fetchProfile(token));
+            })
+            .then(() => {
                 dispatch(cancelEditedName());
             })
             .catch((error) => {
-                console.error('Failed to save new user name:', error);
+                console.error('Failed to save new userName:', error);
             });
     };
 

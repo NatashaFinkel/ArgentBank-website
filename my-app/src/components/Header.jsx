@@ -1,4 +1,4 @@
-import {React, useEffect } from "react";
+import { React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfile } from "../Redux/reducers/profileSlice.js";
 import headerImg from "../img/argentBankLogo.png";
@@ -8,13 +8,13 @@ import { logout } from "../Redux/reducers/authenticationSlice.js";
 function Header() {
     const dispatch = useDispatch();
     const token = useSelector((state) => state.authentication.token);
-    const firstName = useSelector((state) => state.profile.name.firstName);
+    const userName = useSelector((state) => state.profile.name.userName);
 
     useEffect(() => {
         if (token) {
             dispatch(fetchProfile(token));
         }
-    }, [dispatch, token]);
+    }, [dispatch, token, userName]);
 
     const handleLogout = () => {
         dispatch(logout());
@@ -29,7 +29,7 @@ function Header() {
                         <div className="user-name-div">
 
                             <NavBarLinks navClassName="main-nav-item"
-                                navId="anonymous-user" navIcon="fa fa-user-circle nav-user-icon" navPId="userNameAndIcon" Navtxt={firstName} navDirection="/profile" />
+                                navId="anonymous-user" navIcon="fa fa-user-circle nav-user-icon" navPId="userNameAndIcon" Navtxt={userName} navDirection="/profile" />
 
                             <NavBarLinks navClassName="main-nav-item signOut-btn"
                                 navDirection="/" navIcon="fa fa-sign-out signOut-icon" navId="signOut-btn" Navtxt="Sign Out" navOnClick={handleLogout} />
