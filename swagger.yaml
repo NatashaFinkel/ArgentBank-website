@@ -182,8 +182,8 @@ paths:
         - Bearer: []
       tags:
         - User Module
-      summary: Update a specific information field of a specific transaction  
-      description: API for updating a specific information field of a specific transaction
+      summary: Update or delete a specific information field of a specific transaction  
+      description: API for updating or deleting a specific information field of a specific transaction
        #produces:
        # - application/json
       responses:
@@ -312,9 +312,9 @@ definitions:
         type: string
       specificTransactionId:
         type: string
-      oldValue:
+      valueLocation:
         type: string
-      newValue: 
+      newTxtValue: 
        type: string
   MonthTransactions:
     type: object
