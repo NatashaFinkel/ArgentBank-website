@@ -102,7 +102,7 @@ paths:
         '500':
           description: Internal Server Error
   /user/accounts:
-    get:
+    post:
       security:
         - Bearer: []
       tags:
@@ -121,7 +121,7 @@ paths:
         '500':
           description: Internal Server Error
   /user/accounts/specificAccount:
-    get:
+    post:
       security:
         - Bearer: []
       tags:
@@ -140,7 +140,7 @@ paths:
         '500':
           description: Internal Server Error          
   /user/accounts/specificAccount/transactions:
-    get:
+    post:
       security:
         - Bearer: []
       tags:
@@ -159,7 +159,7 @@ paths:
         '500':
           description: Internal Server Error
   /user/accounts/specificAccount/transactions/specificTransaction:
-    get:
+    post:
       security:
         - Bearer: []
       tags:
@@ -196,7 +196,7 @@ paths:
         '500':
           description: Internal Server Error
   /user/accounts/specificAccount/transactions/monthId:
-   get:
+   post:
       security:
         - Bearer: []
       tags:
