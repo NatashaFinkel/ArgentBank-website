@@ -177,7 +177,24 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-
+    patch:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: Update a specific information field of a specific transaction  
+      description: API for updating a specific information field of a specific transaction
+       #produces:
+       # - application/json
+      responses:
+        '200':
+          description: The specific information field retrieved successully
+          schema:
+            $ref: '#/definitions/UpdateTransactionInformations'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
   /user/accounts/specificAccount/transactions/monthId:
    get:
       security:
@@ -197,7 +214,6 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -285,6 +301,21 @@ definitions:
         type: string
       specificTransactionId:
         type: string
+  UpdateTransactionInformations:
+    type: object
+    properties:
+      accountsArrayId:
+        type: string
+      specificAccountId:
+        type: string  
+      transactionsArrayId:
+        type: string
+      specificTransactionId:
+        type: string
+      oldValue:
+        type: string
+      newValue: 
+       type: string
   MonthTransactions:
     type: object
     properties:
