@@ -182,8 +182,8 @@ paths:
         - Bearer: []
       tags:
         - User Module
-      summary: Update or delete a specific information field of a specific transaction  
-      description: API for updating or deleting a specific information field of a specific transaction
+      summary: Add, update,or delete a specific information field of a specific transaction  
+      description: API for adding, updating or deleting a specific information field of a specific transaction
        #produces:
        # - application/json
       responses:
