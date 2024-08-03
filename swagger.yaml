@@ -66,7 +66,7 @@ paths:
       summary: User Profile API
       description: API for fetching a user profile
       #produces:
-       # - application/json
+      # - application/json
       responses:
         '200':
           description: User profile retrieved successully
@@ -97,6 +97,86 @@ paths:
           description: User profile retrieved successully
           schema:
             $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/accounts:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: Get all the user's bank accounts
+      description:
+        API for fetching all the user's bank accounts
+        #produces:
+        # - application/json
+      responses:
+        '200':
+          description: All the user's bank accounts retrieved successully
+          schema:
+            $ref: '#/definitions/Accounts'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/accounts/specificAccount:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: Get a specific bank account
+      description:
+        API for fetching a specific bank account
+        #produces:
+        # - application/json
+      responses:
+        '200':
+          description: Specific bank account retrieved successully
+          schema:
+            $ref: '#/definitions/SpecificAccount'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/accounts/specificAccount/transactions:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: Get every transactions of a specific bank account
+      description:
+        API for fetching every transactions of a specific bank account
+        #produces:
+        # - application/json
+      responses:
+        '200':
+          description: Each transactions of a specific account retrieved successully
+          schema:
+            $ref: '#/definitions/Transactions'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/accounts/specificAccount/transactions/specificTransaction:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - User Module
+      summary: Get a specific transaction in a specific account
+      description:
+        API for fetching a specific transaction in a specific account
+        #produces:
+        # - application/json
+      responses:
+        '200':
+          description: Specific transaction of a specific account retrieved successully
+          schema:
+            $ref: '#/definitions/SpecificTransaction'
         '400':
           description: Invalid Fields
         '500':
@@ -155,4 +235,36 @@ definitions:
     type: object
     properties:
       userName:
+        type: string
+  Accounts:
+    type: object
+    properties:
+      accountsArrayId:
+        type: string
+  SpecificAccount:
+    type: object
+    properties:
+      accountsArrayId:
+        type: string
+      specificAccountId:
+        type: string
+  Transactions:
+    type: object
+    properties:
+      accountsArrayId:
+        type: string
+      specificAccountId:
+        type: string
+      transactionsArrayId:
+        type: string
+  SpecificTransaction:
+    type: object
+    properties:
+      accountsArrayId:
+        type: string
+      specificAccountId:
+        type: string
+      transactionsArrayId:
+        type: string
+      specificTransactionId:
         type: string
