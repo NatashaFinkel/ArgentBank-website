@@ -102,118 +102,118 @@ paths:
         '500':
           description: Internal Server Error
   /user/accounts:
-    post:
+    get:
       security:
         - Bearer: []
       tags:
         - User Module
       summary: Get all the user's bank accounts
       description: API for fetching all the user's bank accounts
-       #produces:
-       # - application/json
+      produces:
+        - application/json
       responses:
         '200':
           description: All the user's bank accounts retrieved successully
           schema:
-            $ref: '#/definitions/Accounts'
+            type: object
+            items:
+              type: string
+            properties:
+              accountName:
+                type: string
+              accountId:
+                type: number
+              balance:
+                type: number
+              accountDescription:
+                type: string
+        '404':
+          description: 'Error: Not Found'
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/accounts/specificAccount:
+  /user/accounts/{accountId}/transactions/{transactionId}:
+    parameters:
+        - name: accountId
+          in: path
+          description: the account's id
+          required: true
+          type: integer
+          minimum: 1      
+        - name: transactionId
+          in: path
+          description: the transaction's id
+          required: true
+          type: integer
+          minimum: 1            
+    get:
+      tags:
+        - User Module
+      summary: Get transaction's id
+      description: API to get the transaction's id
+      operationId: getTransactionId
+      responses:
+        '200':
+          description: Transaction retrieved successully
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+            
     post:
-      security:
-        - Bearer: []
       tags:
         - User Module
-      summary: Get a specific bank account
-      description: API for fetching a specific bank account
-       #produces:
-       # - application/json
+      summary: Update data
+      description: API to update data
+      operationId: updateData
+      consumes:
+       - application/json
+      parameters:
+        - in: body
+          name: update data
+          schema:
+            type: object
+            required:
+              - valueLocation
+              - newValue
+            properties:
+              valueLocation:
+                type: string
+              newValue:
+                type: string
       responses:
         '200':
-          description: Specific bank account retrieved successully
-          schema:
-            $ref: '#/definitions/SpecificAccount'
+          description: Transaction updated successully
         '400':
-          description: Invalid Fields
-        '500':
-          description: Internal Server Error          
-  /user/accounts/specificAccount/transactions:
-    post:
-      security:
-        - Bearer: []
+          description: Bad request
+          
+    delete:
       tags:
         - User Module
-      summary: Get every transactions of a specific bank account
-      description: API for fetching every transactions of a specific bank account
-       #produces:
-       # - application/json
+      summary: Delete data
+      description: API to delete data
+      operationId: deleteData
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: Delete data
+          schema:
+            type: object
+            required:
+              - valueLocation
+              - valueToDelete
+            properties:
+              valueLocation:
+                type: string
+              valueToDelete:
+                type: string
       responses:
         '200':
-          description: Each transactions of a specific account retrieved successully
-          schema:
-            $ref: '#/definitions/Transactions'
+          description: Transaction deleted successfully
         '400':
-          description: Invalid Fields
-        '500':
-          description: Internal Server Error
-  /user/accounts/specificAccount/transactions/specificTransaction:
-    post:
-      security:
-        - Bearer: []
-      tags:
-        - User Module
-      summary: Get a specific transaction in a specific account
-      description: API for fetching a specific transaction in a specific account
-       #produces:
-       # - application/json
-      responses:
-        '200':
-          description: Specific transaction of a specific account retrieved successully
-          schema:
-            $ref: '#/definitions/SpecificTransaction'
-        '400':
-          description: Invalid Fields
-        '500':
-          description: Internal Server Error
-    patch:
-      security:
-        - Bearer: []
-      tags:
-        - User Module
-      summary: Add, update,or delete a specific information field of a specific transaction  
-      description: API for adding, updating or deleting a specific information field of a specific transaction
-       #produces:
-       # - application/json
-      responses:
-        '200':
-          description: The specific information field retrieved successully
-          schema:
-            $ref: '#/definitions/UpdateTransactionInformations'
-        '400':
-          description: Invalid Fields
-        '500':
-          description: Internal Server Error
-  /user/accounts/specificAccount/transactions/monthId:
-   post:
-      security:
-        - Bearer: []
-      tags:
-        - User Module
-      summary: Get all transactions of a specific bank account for a specific month
-      description: API for fetching all transactions of a specific bank account for a specific month
-       #produces:
-       # - application/json
-      responses:
-        '200':
-          description: All the transactions of a specific bank account for a specific month retrieved successully
-          schema:
-            $ref: '#/definitions/MonthTransactions'
-        '400':
-          description: Invalid Fields
-        '500':
-          description: Internal Server Error
+          description: Bad request  
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -268,62 +268,4 @@ definitions:
     type: object
     properties:
       userName:
-        type: string
-  Accounts:
-    type: object
-    properties:
-      accountsArrayId:
-        type: string
-  SpecificAccount:
-    type: object
-    properties:
-      accountsArrayId:
-        type: string
-      specificAccountId:
-        type: string
-  Transactions:
-    type: object
-    properties:
-      accountsArrayId:
-        type: string
-      specificAccountId:
-        type: string
-      transactionsArrayId:
-        type: string
-  SpecificTransaction:
-    type: object
-    properties:
-      accountsArrayId:
-        type: string
-      specificAccountId:
-        type: string
-      transactionsArrayId:
-        type: string
-      specificTransactionId:
-        type: string
-  UpdateTransactionInformations:
-    type: object
-    properties:
-      accountsArrayId:
-        type: string
-      specificAccountId:
-        type: string  
-      transactionsArrayId:
-        type: string
-      specificTransactionId:
-        type: string
-      valueLocation:
-        type: string
-      newTxtValue: 
-       type: string
-  MonthTransactions:
-    type: object
-    properties:
-      accountsArrayId:
-        type: string
-      specificAccountId:
-        type: string
-      transactionsArrayId:
-        type: string
-      monthId:
         type: string
