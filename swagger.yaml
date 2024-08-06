@@ -118,6 +118,35 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+          
+  /user/accounts/{accountId}/{transactionId}:  
+    parameters:
+        - in: path
+          name: accountId
+          description: Account ID
+          required: true
+          type: string
+        - in: path
+          name: transactionId
+          description: Transaction ID
+          required: true
+          type: string
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - User financial datas
+      summary: Update a transaction
+      description: API for updating a transaction
+      responses:
+        '200':
+          description: All accounts and all transactions retrieved successfully
+          schema:
+            $ref: "#/definitions/UserAccountAndTransactions"
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -193,7 +222,7 @@ definitions:
         type: number
       transactionType: 
         type: string
-      transactionCategory:
+      categoryTxtValue:
         type: string
-      transactionNotes:
+      notesTxtValue:
         type: string  
