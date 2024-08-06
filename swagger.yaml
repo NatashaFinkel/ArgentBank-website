@@ -142,7 +142,7 @@ paths:
         '200':
           description: All accounts and all transactions retrieved successfully
           schema:
-            $ref: "#/definitions/UserAccountAndTransactions"
+            $ref: "#/definitions/DetailedTransaction"
         '400':
           description: Invalid Fields
         '500':
@@ -201,7 +201,7 @@ definitions:
     type: object
     properties:
       userName:
-        type: string
+        type: string       
   UserAccountAndTransactions:
     type: object
     properties:
@@ -216,6 +216,28 @@ definitions:
       transactionDate:
         type: string
         format: date
+      transactionDescription:
+        type: string
+      transactionAmount:
+        type: number
+      transactionBalance:
+        type: number
+  DetailedTransaction:
+    type: object
+    properties:
+      accountName:
+        type: string
+      accountId:
+        type: integer
+      balance:
+        type: number
+      accountDescription:
+        type: string
+      transactionDate:
+        type: string
+        format: date
+      transactionDescription:
+        type: string
       transactionAmount:
         type: number
       transactionBalance:
