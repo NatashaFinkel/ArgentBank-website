@@ -101,18 +101,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/accounts/{accountId}/{transactionId}:
-    parameters:
-        - in: path
-          name: accountId
-          description: Account ID
-          required: true
-          type: string
-        - in: path
-          name: transactionId
-          description: Transaction ID
-          required: true
-          type: string  
+  /user/accounts:
     post:
       security:
         - Bearer: []
