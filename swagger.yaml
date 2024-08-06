@@ -101,119 +101,23 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/accounts:
-    get:
+  /user/accounts-and-transactions:
+    post:
       security:
         - Bearer: []
       tags:
-        - User Module
-      summary: Get all the user's bank accounts
-      description: API for fetching all the user's bank accounts
-      produces:
-        - application/json
+        - User financial datas
+      summary: User's accounts and transactions
+      description: API for getting all the user's accounts and transactions
       responses:
         '200':
-          description: All the user's bank accounts retrieved successully
+          description: All accounts and all transactions retrieved successfully
           schema:
-            type: object
-            items:
-              type: string
-            properties:
-              accountName:
-                type: string
-              accountId:
-                type: number
-              balance:
-                type: number
-              accountDescription:
-                type: string
-        '404':
-          description: 'Error: Not Found'
+            $ref: "#/definitions/UserAccountAndTransactions"
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/accounts/{accountId}/transactions/{transactionId}:
-    parameters:
-        - name: accountId
-          in: path
-          description: the account's id
-          required: true
-          type: integer
-          minimum: 1      
-        - name: transactionId
-          in: path
-          description: the transaction's id
-          required: true
-          type: integer
-          minimum: 1            
-    get:
-      tags:
-        - User Module
-      summary: Get transaction's id
-      description: API to get the transaction's id
-      operationId: getTransactionId
-      responses:
-        '200':
-          description: Transaction retrieved successully
-        '400':
-          description: Bad request
-        '404':
-          description: Not found
-            
-    post:
-      tags:
-        - User Module
-      summary: Update data
-      description: API to update data
-      operationId: updateData
-      consumes:
-       - application/json
-      parameters:
-        - in: body
-          name: update data
-          schema:
-            type: object
-            required:
-              - valueLocation
-              - newValue
-            properties:
-              valueLocation:
-                type: string
-              newValue:
-                type: string
-      responses:
-        '200':
-          description: Transaction updated successully
-        '400':
-          description: Bad request
-          
-    delete:
-      tags:
-        - User Module
-      summary: Delete data
-      description: API to delete data
-      operationId: deleteData
-      consumes:
-        - application/json
-      parameters:
-        - in: body
-          name: Delete data
-          schema:
-            type: object
-            required:
-              - valueLocation
-              - valueToDelete
-            properties:
-              valueLocation:
-                type: string
-              valueToDelete:
-                type: string
-      responses:
-        '200':
-          description: Transaction deleted successfully
-        '400':
-          description: Bad request  
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -269,3 +173,27 @@ definitions:
     properties:
       userName:
         type: string
+  UserAccountAndTransactions:
+    type: object
+    properties:
+      accountName:
+        type: string
+      accountId:
+        type: integer
+      balance:
+        type: number
+      accountDescription:
+        type: string
+      transactionDate:
+        type: string
+        format: date
+      transactionAmount:
+        type: number
+      transactionBalance:
+        type: number
+      transactionType: 
+        type: string
+      transactionCategory:
+        type: string
+      transactionNotes:
+        type: string  
