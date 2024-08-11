@@ -101,52 +101,142 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/accounts:
+  /user/profile/accounts:
     post:
       security:
         - Bearer: []
       tags:
-        - User financial datas
-      summary: User's accounts and transactions
-      description: API for getting all the user's accounts and transactions
+        - Financial Data
+      summary: A concise recap of the user's each account
+      description: API for getting a brief summary of each account to put on the profile page
       responses:
         '200':
-          description: All accounts and all transactions retrieved successfully
+          description: A recap of every account retrieved successfully
           schema:
-            $ref: "#/definitions/UserAccountAndTransactions"
+            $ref: "#/definitions/AccountsSummary"
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
-          
-  /user/accounts/{accountId}/{transactionId}:  
+  /user/profile/accounts/{accountId}/transactions_{currentMonthId}:  
     parameters:
         - in: path
           name: accountId
           description: Account ID
           required: true
-          type: string
+          type: integer
         - in: path
-          name: transactionId
-          description: Transaction ID
+          name: currentMonthId
+          description: Current month ID
           required: true
-          type: string
-    put:
+          type: integer          
+    post:
       security:
         - Bearer: []
       tags:
-        - User financial datas
-      summary: Update a transaction
-      description: API for updating a transaction
+        - Financial Data
+      summary: A summary of every transactions of a specific account for the current month
+      description: API for getting a summary of all transactions of a specific account for a limited period of time (the current month)
       responses:
         '200':
-          description: All accounts and all transactions retrieved successfully
+          description: All the current month's transactions of this specific account retrieved successfully
           schema:
-            $ref: "#/definitions/DetailedTransaction"
+            $ref: "#/definitions/TransactionsSummary"
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
+  /user/profile/accounts/{accountId}/transactions/{transactionId}:
+    parameters:
+        - in: path
+          name: accountId
+          description: Account ID
+          required: true
+          type: integer
+        - in: path
+          name: transactionId
+          description: Transaction ID
+          required: true
+          type: integer  
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - Financial Data
+      summary: Details about a specific transaction  
+      description: API for getting all available details about a specific transaction
+      responses:
+        '200':
+          description: All the details about this specific transaction retrieved successfully
+          schema:
+            $ref: "#/definitions/TransactionDetails"
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/profile/accounts/{accountId}/transactions/{transactionId}/{fieldToModify}: 
+    parameters:
+        - in: path
+          name: accountId
+          description: Account ID
+          required: true
+          type: integer
+        - in: path
+          name: transactionId
+          description: Transaction ID
+          required: true
+          type: integer
+        - in: path
+          name: fieldToModify
+          description: ID of the field to modify
+          required: true
+          type: string
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - Financial Data Modifications
+      summary: Add data to a transaction
+      description: API for adding data to a specific field of a specific transaction
+      responses:
+        '200':
+          description: The data was successfully added to the transaction
+          schema:
+            $ref: "#/definitions/AddData"
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+    put:
+      security:
+        - Bearer: []
+      tags:
+        - Financial Data Modifications
+      summary: Update a transaction's data
+      description: API for updating data on a specific field of a specific transaction
+      responses:
+        '200':
+          description: The field was successfully updated
+          schema:
+            $ref: "#/definitions/UpdateData"
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error  
+    delete:
+      security:
+        - Bearer: []
+      tags:
+        - Financial Data Modifications
+      summary: Delete a transaction's data
+      description: API for deleting data on a specific field of a specific transaction
+      responses:
+        '200':
+          description: The data was successfully deleted
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error      
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -202,7 +292,7 @@ definitions:
     properties:
       userName:
         type: string       
-  UserAccountAndTransactions:
+  AccountsSummary:
     type: object
     properties:
       accountName:
@@ -211,28 +301,11 @@ definitions:
         type: integer
       balance:
         type: number
-      accountDescription:
+      balanceDescription:
         type: string
-      transactionDate:
-        type: string
-        format: date
-      transactionDescription:
-        type: string
-      transactionAmount:
-        type: number
-      transactionBalance:
-        type: number
-  DetailedTransaction:
+  TransactionsSummary:
     type: object
     properties:
-      accountName:
-        type: string
-      accountId:
-        type: integer
-      balance:
-        type: number
-      accountDescription:
-        type: string
       transactionDate:
         type: string
         format: date
@@ -241,10 +314,23 @@ definitions:
       transactionAmount:
         type: number
       transactionBalance:
-        type: number
+        type: number  
+  TransactionDetails:
+    type: object
+    properties:
       transactionType: 
         type: string
       categoryTxtValue:
         type: string
       notesTxtValue:
-        type: string  
+        type: string
+  AddData:
+    type: object
+    properties:
+      addedValue:
+        type: string 
+  UpdateData:
+    type: object
+    properties:
+      updatedTxtValue:
+        type: string
